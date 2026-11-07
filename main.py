@@ -1,19 +1,19 @@
 import storage
-
+import menu
 
 print("Hello world!")
-print("Server Status Tool v0.0.1 (Late Night edition)")
+print("Server Status Tool v0.0.2 (Late Night edition)")
 
 
 server_list = storage.load_data()
 
-for server in server_list:
-    print(f"Name: {server['namn']} - Role: {server['roll']}")
+
+menu.main_menu(server_list)
 
 
+#menu.show_all_servers(server_list)
 
-
-
+#menu.show_select_server(server_list)
 
 
 

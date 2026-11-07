@@ -1,10 +1,12 @@
 import json
+import pathlib
 
 # read server information from servers.json
 def load_data():
-    with open("servers.json", "r", encoding="utf-8") as file:
-        return json.load(file)
+    DATAFILE = pathlib.Path("servers.json")
 
+    with DATAFILE.open("r", encoding="utf-8") as file:
+        return json.load(file)
 
 
 # write server information to servers.json
