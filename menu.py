@@ -1,5 +1,10 @@
 # Menu logic for Server-Inventory-Tool
 
+from storage import(
+    add_new_server,
+    export_data_csv
+)
+
 def show_menu_text():
     print()
     print("1. Show all servers")
@@ -35,6 +40,31 @@ def show_select_server(server_list, user_input):
 
     print(f"No matching server name \'{user_input}\'")
 
+def add_server(server_list):
+    print()
+    i = 1
+    while i != 0:
+        i = 0
+        user_server_name_input = input("Enter server name: ").strip()
+        for server in server_list:
+            if user_server_name_input.lower() == server['namn'].lower():
+                print("That server(name) already exists. please select a unique server name.")
+                i+=1
+                break
+
+    user_server_adress_input = input("Enter server adress: ").strip()
+    user_server_environment_input = input("Enter server environment[prod, test, dev]: ").strip().lower()
+    user_server_role_input = input("Enter server role: ").strip()
+
+    add_new_server(
+        server_list,
+        user_server_name_input,
+        user_server_adress_input,
+        user_server_environment_input,
+        user_server_role_input
+    )
+
+
 
 def main_menu(server_list):
     while True:
@@ -50,8 +80,16 @@ def main_menu(server_list):
                 user_input = input("Enter server name or adress: ").strip()
                 show_select_server(server_list, user_input)
             case "3":
-                print("Add server! NYI")
-                
+                add_server(server_list)
+            case "4":
+                print("Remove server! NYI")
+            case "5":
+                print("Check server")
+            case "6":
+                print("Check all servers")
+            case "7":
+                print("Export csv report")
+                export_data_csv(server_list)
             case "8"| "e" | "q" | "x" | "E" | "Q" | "X":
                 print("Exiting program")
                 return

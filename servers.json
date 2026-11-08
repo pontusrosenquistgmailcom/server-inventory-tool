@@ -30,5 +30,13 @@
     "roll": "utvecklingsserver",
     "status": "unknown",
     "senast_kontrollerad": ""
+  },
+  {
+    "namn": "mail01",
+    "adress": "hotmail.com",
+    "miljo": "prod",
+    "roll": "mailserver",
+    "status": "unknown",
+    "senast_kontrollerad": ""
   }
 ]
