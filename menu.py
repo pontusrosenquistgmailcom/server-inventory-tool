@@ -6,6 +6,8 @@ from storage import(
     delete_server
 )
 
+import statuschecker
+
 def show_menu_text():
     print()
     print("1. Show all servers")
@@ -19,14 +21,20 @@ def show_menu_text():
     print()
 
 def show_table_headers():
-    print(f"{'Server Name':<15} {'Adress':<15} {'Environment':<15} {'Role':<20} {'Status':<15} {'Last Checked':<15}")
+    print(f"{'Server Name':<15} {'Adress':<15} {'Environment':<15} {'Role':<20} {'Status':<10} {'Last Checked':<15}")
 
 def show_all_servers(server_list):
     print()
     show_table_headers()
           
     for server in server_list:
-        print(f"{server['namn']:<15} {server['adress']:<15} {server['miljo']:<15} {server['roll']:<20} {server['status']:<15} {server['senast_kontrollerad']:<15}")
+        print(f"{server['namn']:<15} {server['adress']:<15} {server['miljo']:<15} {server['roll']:<20} {server['status']:<10} {server['senast_kontrollerad']:<15}")
+
+def select_server(server_list, user_input):
+    for server in server_list:
+            if user_input.lower() in server['namn'].lower() or user_input.lower() in server['adress'].lower():
+                return server
+    return None
 
 
 def show_select_server(server_list, user_input):
@@ -36,7 +44,7 @@ def show_select_server(server_list, user_input):
     for server in server_list:
         if user_input.lower() in server['namn'].lower() or user_input.lower() in server['adress'].lower():
             show_table_headers()
-            print(f"{server['namn']:<15} {server['adress']:<15} {server['miljo']:<15} {server['roll']:<20} {server['status']:<15} {server['senast_kontrollerad']:<15}")
+            print(f"{server['namn']:<15} {server['adress']:<15} {server['miljo']:<15} {server['roll']:<20} {server['status']:<10} {server['senast_kontrollerad']:<15}")
             return
 
     print(f"No matching server name \'{user_input}\'")
@@ -94,8 +102,12 @@ def main_menu(server_list):
                 remove_server(server_list)
             case "5":
                 print("Check server")
+                user_input = input("Enter server name or adress: ").strip()
+                server = select_server(server_list, user_input)
+                statuschecker.update_select_server(server_list, server)
             case "6":
                 print("Check all servers")
+                statuschecker.update_all_servers(server_list)
             case "7":
                 export_data_csv(server_list)
             case "8"| "e" | "q" | "x" | "E" | "Q" | "X":
