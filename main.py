@@ -5,7 +5,12 @@ import menu
 def main():
 
     print("Hello world!")
-    print("Server Status Tool v0.0.2 (Late Night edition)")
+    print("Server Status Tool v0.1.1 (Late Night edition)")
+
+    # load config from envi variable
+    config = storage.load_config()
+
+    print(f"Config file set to: {config}")
 
     # load server data from json storage
     server_list = storage.load_data()

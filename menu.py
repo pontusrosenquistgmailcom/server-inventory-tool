@@ -2,7 +2,8 @@
 
 from storage import(
     add_new_server,
-    export_data_csv
+    export_data_csv,
+    delete_server
 )
 
 def show_menu_text():
@@ -64,11 +65,19 @@ def add_server(server_list):
         user_server_role_input
     )
 
+def remove_server(server_list):
+    user_remove_server_name_input = input("Enter server name to remove: ").strip()
+    for server in server_list:
+        if user_remove_server_name_input == server['namn']:
+            delete_server(server_list, server)
+            print(f"Removed {server['namn']} from server list")
+            return
+    print(f"Server \'{user_remove_server_name_input}\' not found.")
 
 
 def main_menu(server_list):
     while True:
-        print("Start of Menu loop")
+        #print("Start of Menu loop")
         show_menu_text()
 
         menu_option = input("Select Menu option: ").strip()
@@ -82,13 +91,12 @@ def main_menu(server_list):
             case "3":
                 add_server(server_list)
             case "4":
-                print("Remove server! NYI")
+                remove_server(server_list)
             case "5":
                 print("Check server")
             case "6":
                 print("Check all servers")
             case "7":
-                print("Export csv report")
                 export_data_csv(server_list)
             case "8"| "e" | "q" | "x" | "E" | "Q" | "X":
                 print("Exiting program")

@@ -2,6 +2,19 @@ import json
 import pathlib
 import datetime
 import csv
+import os
+
+# read config data from config.json
+def load_config():
+    env_file_name = os.getenv("SERVER_INVENTORY_TOOL")
+    
+    if env_file_name is None:
+        print("No SERVER_INVENTORY_TOOL environment variable set. defaulting to servers.json")
+        return pathlib.Path("servers.json")
+    else:
+        print(f"obtained file name from env: \'{env_file_name}\'")
+        return pathlib.Path(env_file_name)
+
 
 # read server information from servers.json
 def load_data():
@@ -37,7 +50,6 @@ def export_data_csv(server_list):
         f"{reports_directory}/report_{now.strftime('%Y-%m-%d_%H%M%S')}.csv"
     )
 
-    print(report_name)
     with open(report_name, "w", newline="", encoding="utf-8") as file:
 
         report = csv.DictWriter(
@@ -47,6 +59,7 @@ def export_data_csv(server_list):
         report.writeheader()
         report.writerows(server_list)
 
+    print(f"Exported server data to: {report_name}")
 
 
 # add new server to server_list array
@@ -63,3 +76,9 @@ def add_new_server(server_list, name, adress, environment, role):
     server_list.append(new_server)
     save_data(server_list)
     #print("End of storage.add_new_server(...) function")
+
+# remove server from server_list array
+def delete_server(server_list, server):
+    print("start of delete_server")
+    server_list.remove(server)
+    save_data(server_list)
