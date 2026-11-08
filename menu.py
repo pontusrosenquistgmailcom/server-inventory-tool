@@ -39,15 +39,11 @@ def select_server(server_list, user_input):
 
 def show_select_server(server_list, user_input):
     print()
-    #print(f"{'Server Name':<15} {'Adress':<15} {'Environment':<15} {'Role':<20} {'Status':<15} {'Last Checked':<15}")
-          
+    show_table_headers()
     for server in server_list:
-        if user_input.lower() in server['namn'].lower() or user_input.lower() in server['adress'].lower():
-            show_table_headers()
+        if user_input == server['miljo']:            
             print(f"{server['namn']:<15} {server['adress']:<15} {server['miljo']:<15} {server['roll']:<20} {server['status']:<10} {server['senast_kontrollerad']:<15}")
-            return
 
-    print(f"No matching server name \'{user_input}\'")
 
 def add_server(server_list):
     print()
@@ -77,8 +73,13 @@ def remove_server(server_list):
     user_remove_server_name_input = input("Enter server name to remove: ").strip()
     for server in server_list:
         if user_remove_server_name_input == server['namn']:
+            if server['miljo'] == "prod":
+                user_input = input("Are you sure you want to remove this prod-env server (y/n): ")
+                if user_input != "y":
+                    print("Server removal canceled. returning to main menu.")
+                    return
             delete_server(server_list, server)
-            print(f"Removed {server['namn']} from server list")
+            print(f"Removed \'{server['namn']}\' from stored servers")
             return
     print(f"Server \'{user_remove_server_name_input}\' not found.")
 
@@ -94,7 +95,7 @@ def main_menu(server_list):
             case "1":
                 show_all_servers(server_list)
             case "2":
-                user_input = input("Enter server name or adress: ").strip()
+                user_input = input("Select environment [prod, test, dev]: ").strip()
                 show_select_server(server_list, user_input)
             case "3":
                 add_server(server_list)
@@ -104,7 +105,10 @@ def main_menu(server_list):
                 print("Check server")
                 user_input = input("Enter server name or adress: ").strip()
                 server = select_server(server_list, user_input)
-                statuschecker.update_select_server(server_list, server)
+                if server == None:
+                    print("Server not found")
+                else:
+                    statuschecker.update_select_server(server_list, server)
             case "6":
                 print("Check all servers")
                 statuschecker.update_all_servers(server_list)

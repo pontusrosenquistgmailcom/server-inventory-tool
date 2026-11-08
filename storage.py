@@ -6,10 +6,10 @@ import os
 
 # read config data from config.json
 def load_config():
-    env_file_name = os.getenv("SERVER_INVENTORY_TOOL")
+    env_file_name = os.getenv("INVENTORY_DATAFIL")
     
     if env_file_name is None:
-        print("No SERVER_INVENTORY_TOOL environment variable set. defaulting to servers.json")
+        print("No \'INVENTORY_DATAFIL\' environment variable set. defaulting to servers.json")
         return pathlib.Path("servers.json")
     else:
         print(f"obtained file name from env: \'{env_file_name}\'")
@@ -79,6 +79,5 @@ def add_new_server(server_list, name, adress, environment, role):
 
 # remove server from server_list array
 def delete_server(server_list, server):
-    print("start of delete_server")
     server_list.remove(server)
     save_data(server_list)

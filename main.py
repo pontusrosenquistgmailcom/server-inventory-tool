@@ -4,8 +4,8 @@ import menu
 
 def main():
 
-    print("Hello world!")
-    print("Server Status Tool v0.2.1 (Late Night edition)")
+    #print("Hello world!")
+    print("Server Status Tool v0.3.1 (Late Night edition)")
 
     # load config from envi variable
     config = storage.load_config()
