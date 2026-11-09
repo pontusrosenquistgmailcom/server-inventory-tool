@@ -2,11 +2,13 @@ import sys
 import storage
 import argparse
 import statuschecker
-import menu
+
+
+# main.py was getting crowded
 
 def cli_args():
     parser = argparse.ArgumentParser(
-        description="Server Status Tool"
+        description="Server Status Tool v0.3.5 (Early Morning edition)"
     )
     parser.add_argument(
         "--list",
@@ -16,12 +18,12 @@ def cli_args():
     parser.add_argument(
         "--environment",
         choices=["prod", "test", "dev"],
-        help="only list servers from a select environment (prod, test or dev): --environment prod"
+        help="List servers from a select environment (prod, test or dev)"
     )
     parser.add_argument(
         "--check",
         type=str,
-        help="Check status of select server name: --check web01"
+        help="Check status of select server name or adress"
     )
     parser.add_argument(
         "--check-all",
@@ -40,16 +42,16 @@ def cli_args():
 def cli_mode(server_list, args):
     
     if args.list and args.environment:
-        menu.show_select_server(server_list, args.environment)
+        storage.show_select_server(server_list, args.environment)
         return
 
     if args.list:
         #print("hello from inside args.list")
-        menu.show_all_servers(server_list)
+        storage.show_all_servers(server_list)
 
     if args.check:
         #print("hello from inside args.check")
-        server = menu.select_server(server_list, args.check)
+        server = storage.select_server(server_list, args.check)
         if server == None:
             print(f"\'{args.check}\' could not be found")
             sys.exit(1)

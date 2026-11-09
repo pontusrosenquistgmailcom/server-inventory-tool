@@ -2,16 +2,11 @@ import storage
 import menu
 import sys
 import cli
-import config
 
 def main():
     # obtain CLI input
     args = cli.cli_args()
-
-    # load config from environemnt variable
-    #setting = storage.load_config()
-    #print(f"Server data file set to: {config}")
-
+    
     # load server data from json storage
     server_list = storage.load_data()
 
@@ -20,7 +15,7 @@ def main():
 
     else:
         # Main Menu UI loop
-        print("Server Status Tool v0.3.2 (Late Night edition)")
+        print("Server Status Tool v0.3.5 (Early Morning edition)")
         menu.main_menu(server_list)
 
 
