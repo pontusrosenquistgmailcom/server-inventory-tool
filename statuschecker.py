@@ -24,16 +24,21 @@ def update_select_server(server_list, server):
     if output.returncode == 0:
         #print("Server ping response: OK")
         server['status'] = "up"
+        server['senast_kontrollerad'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        save_data(server_list)
+        return 0
         
     else:
         #print("No ping response from server")
         server['status'] = "down"
+        server['senast_kontrollerad'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        save_data(server_list)
+        return 1
 
-    server['senast_kontrollerad'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    save_data(server_list)
 
 
 def update_all_servers(server_list):
+    down_count = 0
     for server in server_list:
         output = subprocess.run(
             ["ping", "-n", "1", f"{server['adress']}"],
@@ -46,7 +51,11 @@ def update_all_servers(server_list):
         else:
             #print("No ping response from server")
             server['status'] = "down"
+            down_count += 1
         server['senast_kontrollerad'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     save_data(server_list)
-    
+    if down_count == 0:
+        return 0
+    else:
+        return 1
