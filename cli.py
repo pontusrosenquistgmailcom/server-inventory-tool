@@ -1,6 +1,6 @@
 import sys
-import storage
 import argparse
+import storage
 import statuschecker
 
 

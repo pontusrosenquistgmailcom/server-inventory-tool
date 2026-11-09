@@ -1,7 +1,8 @@
+import sys
 import storage
 import menu
-import sys
 import cli
+
 
 def main():
     # obtain CLI input
