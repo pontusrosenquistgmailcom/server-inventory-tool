@@ -5,7 +5,7 @@
     "miljo": "prod",
     "roll": "webbserver",
     "status": "up",
-    "senast_kontrollerad": "2026-11-09 12:26:49"
+    "senast_kontrollerad": "2026-11-09 16:24:22"
   },
   {
     "namn": "db01",
@@ -13,7 +13,7 @@
     "miljo": "prod",
     "roll": "databas",
     "status": "up",
-    "senast_kontrollerad": "2026-11-09 12:26:49"
+    "senast_kontrollerad": "2026-11-09 16:24:22"
   },
   {
     "namn": "test01",
@@ -21,7 +21,7 @@
     "miljo": "test",
     "roll": "testserver",
     "status": "down",
-    "senast_kontrollerad": "2026-11-09 12:26:52"
+    "senast_kontrollerad": "2026-11-09 16:24:26"
   },
   {
     "namn": "dev01",
@@ -29,7 +29,7 @@
     "miljo": "dev",
     "roll": "utvecklingsserver",
     "status": "up",
-    "senast_kontrollerad": "2026-11-09 12:26:52"
+    "senast_kontrollerad": "2026-11-09 16:24:26"
   },
   {
     "namn": "mail01",
@@ -37,6 +37,6 @@
     "miljo": "prod",
     "roll": "mailserver",
     "status": "up",
-    "senast_kontrollerad": "2026-11-09 12:26:52"
+    "senast_kontrollerad": "2026-11-09 16:24:26"
   }
 ]

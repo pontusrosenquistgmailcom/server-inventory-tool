@@ -28,7 +28,7 @@ def cli_args():
     parser.add_argument(
         "--check-all",
         action="store_true",
-        help="check status of all select servers"
+        help="Check status of all select servers"
     )
     parser.add_argument(
         "--export",
