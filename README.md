@@ -8,8 +8,10 @@ python3.10 or later python package
 
 ## Features
 Stores server information in json-datafile (default: `servers.json`)
-can set custom datafile in system variable `INVENTORY_DATAFIL`
-export 
+
+Can set custom datafile in system variable `INVENTORY_DATAFIL`
+
+Export server data to CSV file
 
 
 ## Usage
@@ -17,11 +19,11 @@ Run script in console:
 ``` python
 python3 .\main.py
 ``` 
-or access the command line arguments  and switches:
+or use the command line arguments and switches such as:
 ``` python
 python3 .\main.py --list
 ```
-available CLI options
+Available CLI options:
 ```
   -h, --help            # show this help message and exit
   --list                # List all servers
