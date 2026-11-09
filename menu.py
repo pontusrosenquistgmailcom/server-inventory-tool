@@ -30,6 +30,7 @@ def show_all_servers(server_list):
     for server in server_list:
         print(f"{server['namn']:<15} {server['adress']:<15} {server['miljo']:<15} {server['roll']:<20} {server['status']:<10} {server['senast_kontrollerad']:<15}")
 
+# TODO: move to storage.py remove and update menu.py
 def select_server(server_list, user_input):
     for server in server_list:
             if user_input.lower() in server['namn'].lower() or user_input.lower() in server['adress'].lower():

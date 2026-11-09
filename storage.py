@@ -3,6 +3,8 @@ import pathlib
 import datetime
 import csv
 import os
+# global variable CONFIG
+from config import CONFIG
 
 # read config data from config.json
 def load_config():
@@ -18,19 +20,18 @@ def load_config():
 
 # read server information from servers.json
 def load_data():
-    DATAFILE = pathlib.Path("servers.json")
-    if DATAFILE.exists():    
-        with DATAFILE.open("r", encoding="utf-8") as file:
+
+    if CONFIG.exists():    
+        with CONFIG.open("r", encoding="utf-8") as file:
             return json.load(file)
     else:
         return []
-    
 
 
 # write server information to servers.json
 def save_data(server_list):
     
-    with open("servers.json", "w", encoding="utf-8") as file:
+    with open(CONFIG, "w", encoding="utf-8") as file:
         json.dump(
             server_list,
             file,
@@ -81,3 +82,10 @@ def add_new_server(server_list, name, adress, environment, role):
 def delete_server(server_list, server):
     server_list.remove(server)
     save_data(server_list)
+
+
+def select_server(server_list, user_input):
+    for server in server_list:
+            if user_input.lower() in server['namn'].lower() or user_input.lower() in server['adress'].lower():
+                return server
+    return None
