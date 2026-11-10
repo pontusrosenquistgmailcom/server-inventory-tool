@@ -59,11 +59,23 @@ about a *function and its parameters and return* found in update_all_server() fr
 def update_all_servers(server_list): # define update_all_servers(server_list) function. we want the server data stored in a list to be passed along when this is called upon
     down_count = 0 # counter to keep track of how many servers are the be considered 'offline'
     for server in server_list: # simple loop to loop at each dictionary in the list
-        output = subprocess.run( # we use the subprocess.run() to acces the ping program. store the result in variable 'output'
-            ["ping", "-n", "1", f"{server['adress']}"], # the 'command line' we pass along to the subprocess. note how we grab the address from the specific server using the f"{server['adress']}"
-            capture_output=True,
-            text=True
-        )
+
+        # if windows
+        if platform == "win32": # here we use the platform variable from sys library to check what OS we are on. internet says win32 means windows
+            output = subprocess.run( # we use the subprocess.run() to acces the ping program. store the result in variable 'output'
+                ["ping", "-n", "1", f"{server['adress']}"], # the 'command line' adapted for windows we pass along to the subprocess. note how we grab the address from the specific server using the f"{server['adress']}"
+                capture_output=True,
+                text=True
+            )
+        # elif linux (or macOS but i don't have a mac to test on)
+        elif platform == "linux" or platform == "linux2" or "darwin": # same platform from sys check here but for linux & macOS
+            output = subprocess.run(
+                ["ping", "-c", "1", f"{server['adress']}"], # command line adapted for linux
+                capture_output=True,
+                text=True
+            )
+
+
         if output.returncode == 0: # if the returncode is 0 we set the status to 'up'
             #print("Server ping response: OK") # old dev debug message :)
             server['status'] = "up"
