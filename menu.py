@@ -55,7 +55,7 @@ def remove_server(server_list):
             if server['miljo'] == "prod":
                 user_input = input("Are you sure you want to remove this prod-env server (y/n): ")
                 if user_input != "y":
-                    print("Server removal canceled. returning to main menu.")
+                    print("Server removal canceled. Returning to main menu.")
                     return
             storage.delete_server(server_list, server)
             print(f"Removed \'{server['namn']}\' from stored servers")
@@ -74,8 +74,11 @@ def main_menu(server_list):
             case "1":
                 storage.show_all_servers(server_list)
             case "2":
-                user_input = input("Select environment [prod, test, dev]: ").strip()
-                storage.show_select_server(server_list, user_input)
+                user_input = input("Select environment [prod, test, dev]: ").lower().strip()
+                if user_input == "prod" or user_input == "test" or user_input == "dev":
+                    storage.show_select_server(server_list, user_input)
+                else:
+                    print("Available environments are: [PROD] [TEST] [DEV]")
             case "3":
                 add_server(server_list)
             case "4":

@@ -18,6 +18,7 @@ def cli_args():
     parser.add_argument(
         "--environment",
         choices=["prod", "test", "dev"],
+        type=str.lower,
         help="List servers from a select environment (prod, test or dev)"
     )
     parser.add_argument(
