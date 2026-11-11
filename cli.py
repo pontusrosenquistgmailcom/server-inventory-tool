@@ -11,28 +11,28 @@ def cli_args():
         description="Server Status Tool v0.3.5 (Early Morning edition)"
     )
     parser.add_argument(
-        "--list",
+        "--list","--List",
         action="store_true",
         help="List all servers"
     )
     parser.add_argument(
-        "--environment",
+        "--environment","--env","--Env",
         choices=["prod", "test", "dev"],
         type=str.lower,
         help="List servers from a select environment (prod, test or dev)"
     )
     parser.add_argument(
-        "--check",
+        "--check","--Check",
         type=str,
         help="Check status of select server name or adress"
     )
     parser.add_argument(
-        "--check-all",
+        "--check-all","--Check-all","--Check-All",
         action="store_true",
         help="Check status of all select servers"
     )
     parser.add_argument(
-        "--export",
+        "--export","--Export","--csv",
         action="store_true",
         help="Export server data to csv file"
     )
