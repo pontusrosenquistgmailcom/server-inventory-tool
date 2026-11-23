@@ -30,21 +30,5 @@
     "roll": "utvecklingsserver",
     "status": "up",
     "senast_kontrollerad": "2026-11-23 18:48:39"
-  },
-  {
-    "namn": "mail01",
-    "adress": "hotmail.com",
-    "miljo": "prod",
-    "roll": "mailserver",
-    "status": "up",
-    "senast_kontrollerad": "2026-11-23 18:48:39"
-  },
-  {
-    "namn": "asdf",
-    "adress": "123456",
-    "miljo": "prod",
-    "roll": "testentry",
-    "status": "down",
-    "senast_kontrollerad": "2026-11-23 18:48:39"
   }
 ]
