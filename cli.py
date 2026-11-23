@@ -11,28 +11,28 @@ def cli_args():
         description="Server Status Tool v0.3.5 (Early Morning edition)"
     )
     parser.add_argument(
-        "--list","--List",
+        "--lista",
         action="store_true",
         help="List all servers"
     )
     parser.add_argument(
-        "--environment","--env","--Env",
+        "--miljo",
         choices=["prod", "test", "dev"],
         type=str.lower,
         help="List servers from a select environment (prod, test or dev)"
     )
     parser.add_argument(
-        "--check","--Check",
+        "--kontrollera",
         type=str,
         help="Check status of select server name or adress"
     )
     parser.add_argument(
-        "--check-all","--Check-all","--Check-All",
+        "--kontrollera-alla",
         action="store_true",
         help="Check status of all select servers"
     )
     parser.add_argument(
-        "--export","--Export","--csv",
+        "--export",
         action="store_true",
         help="Export server data to csv file"
     )
@@ -42,23 +42,23 @@ def cli_args():
 
 def cli_mode(server_list, args):
     
-    if args.list and args.environment:
-        storage.show_select_server(server_list, args.environment)
+    if args.lista and args.miljo:
+        storage.show_select_server(server_list, args.miljo)
         return
 
-    if args.list:
+    if args.lista:
         #print("hello from inside args.list")
         storage.show_all_servers(server_list)
 
-    if args.check:
+    if args.kontrollera:
         #print("hello from inside args.check")
-        server = storage.select_server(server_list, args.check)
+        server = storage.select_server(server_list, args.kontrollera)
         if server == None:
-            print(f"\'{args.check}\' could not be found")
+            print(f"\'{args.kontrollera}\' could not be found")
             sys.exit(1)
         sys.exit(statuschecker.update_select_server(server_list, server))
 
-    if args.check_all:
+    if args.kontrollera_alla:
         #print("Hello from args.check_all()")
         sys.exit(statuschecker.update_all_servers(server_list))
 

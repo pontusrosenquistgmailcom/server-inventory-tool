@@ -5,11 +5,11 @@ import os
 # seems to be working
 
 def load_config():
-    env_file_name = os.getenv("INVENTORY_DATAFIL")
+    env_file_name = os.environ.get("INVENTORY_DATAFIL")
     
     if env_file_name is None:
         print("No \'INVENTORY_DATAFIL\' environment variable set. defaulting to \'servers.json\'")
-        return pathlib.Path("servers.json")
+        return pathlib.Path("servrar.json")
     else:
         #print(f"Obtained \'{env_file_name}\' from system variable INVENTORY_DATAFIL")
         return pathlib.Path(env_file_name)

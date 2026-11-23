@@ -43,12 +43,12 @@ def save_data(server_list):
 # 1. export server info to CSV file
 # 2. give csv file to friends who enjoy excel :)
 def export_data_csv(server_list):
-    reports_directory = pathlib.Path("reports")
+    reports_directory = pathlib.Path("rapporter")
     reports_directory.mkdir(exist_ok=True)
     now = datetime.datetime.now()
 
     report_name = (
-        f"{reports_directory}/report_{now.strftime('%Y-%m-%d_%H%M%S')}.csv"
+        f"{reports_directory}/inventering_{now.strftime('%Y-%m-%d_%H-%M')}.csv"
     )
 
     with open(report_name, "w", newline="", encoding="utf-8") as file:

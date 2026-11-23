@@ -5,6 +5,7 @@ TODO: update README.md
 
 ## Requirements
 python3.10 or later python package
+Tested on Windows 11 26H2 and linux ubuntu 24.04
 
 ## Features
 Stores server information in json-datafile (default: `servers.json`)

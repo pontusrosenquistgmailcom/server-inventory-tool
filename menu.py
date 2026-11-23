@@ -93,7 +93,7 @@ def main_menu(server_list):
                     print(f"Server \'{server['namn']}\' status updated to \'{server['status']}\'")
             case "6":
                 print("Checking all servers...")
-                if statuschecker.update_all_servers(server_list) == 0:
+                if statuschecker.update_all_servers_web_adaption(server_list) == 0:
                     print("All servers are online")
                 else:
                     print("One or more servers are offline")

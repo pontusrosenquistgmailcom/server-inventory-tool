@@ -16,7 +16,7 @@ def main():
 
     else:
         # Main Menu UI loop
-        print("Server Status Tool v0.3.5 (Early Morning edition)")
+        print("Server Status Tool v0.5.0 (Late edition)")
         menu.main_menu(server_list)
 
 

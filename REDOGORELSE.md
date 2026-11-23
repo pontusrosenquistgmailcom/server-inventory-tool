@@ -92,7 +92,7 @@ def update_all_servers(server_list): # define update_all_servers(server_list) fu
         return 1
 ```
 
-aboiut a *condition* found in main() from main.py
+about a *condition* found in main() from main.py
 
 ```python
 if len(sys.argv) > 1: # sys.argv contains the length of any passed arguments. if that length is over 1 we want to keep running the script in CLI mode
