@@ -174,7 +174,13 @@ Fairly consistent use of only English across code and comments. HOWEVER several 
 
 Most variables are using snake_case (execption: CONFIG)
 
-Logic is split into their separate 'domain files', CLI stuff in the cli.py file, storage stuff in the storage.py file etc. main.py is very minimal, only calls upon the different 'support' functions to start the program (check for arguments, load server data from json -> if args do cli_mode logic, else run main_menu console logic).
+Logic is split into their separate 'domain files', CLI stuff in the cli.py file, storage stuff in the storage.py file etc. main.py is somewhat minimal, only calls upon the different 'support' functions to start the program (check for arguments, load server data from json -> if args do cli_mode logic, else run main_menu console logic).
+
+in statuschecker.py: ping_linux(...)  and ping_windows(...) the ping code is run from its own functions, which makes it easier to update the code used in two different functions
+
+in config.py: load_config() uses `Pathlib.Path()` to ensure safe filename usage. we only obtain the config once
+
+in storage.py: load_data() and save_data() uses the `with` syntax to ensure safe file reading and writing (safe opening and closing might be more accurate)
 
 ### 7. Vilka källor och hjälpmedel har du använt och till vad? Det kan till exempel vara kursboken, dokumentation, forum eller AI-verktyg.
 
